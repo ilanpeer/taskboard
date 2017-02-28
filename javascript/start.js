@@ -2,8 +2,8 @@
  * Created by ilan on 27/02/2017.
  */
 
-// for (setup, comperasion, change) {
-//
+// for (the setup, a comparision, the change) {
+//  what you gonna do?
 // }
 
 for (var i=0; i < 10; i++) {

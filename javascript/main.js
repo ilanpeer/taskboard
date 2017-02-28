@@ -84,7 +84,7 @@ function addEventInput() {
 
         // show the title with new value
         target.parentNode.querySelector('h3').innerHTML = inputValue;
-        target.parentNode.querySelector('h3').style.display = "inline-block";
+        target.parentNode.querySelector('h3').style.display = "block";
       }
     });
   }
@@ -108,7 +108,7 @@ function addEventInputBlur() {
 
       // show the title with new value
       target.parentNode.querySelector('h3').innerHTML = inputValue;
-      target.parentNode.querySelector('h3').style.display = "inline-block";
+      target.parentNode.querySelector('h3').style.display = "block";
 
     });
   }

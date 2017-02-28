@@ -6,9 +6,11 @@ html {
   height: 100%;
   width: 100%;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 100%;
@@ -43,9 +45,11 @@ nav img {
   padding-left: 15px;
   margin: 0;
 }
+
 nav div {
   display: flex;
 }
+
 .nav-link {
   padding: 15px;
   line-height: 20px;
@@ -102,7 +106,7 @@ nav a:nth-child(2) {
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 .titleInput {
@@ -114,8 +118,12 @@ nav a:nth-child(2) {
   font-size: 75%;
 }
 
-#justLists > div > div.titleInput input {
-  margin: 11px;
+.titleInput h3 {
+  cursor: pointer;
+}
+
+.titleInput input {
+  margin: 11px 11px 12px 2px;
 }
 
 .list-body {
@@ -134,7 +142,7 @@ nav a:nth-child(2) {
   background-color: grey;
 }
 
-body > div > div.add-list > button {
+.add-list > button {
   width: 100px;
   margin-left: 10px;
   background-color: #d9edf7;

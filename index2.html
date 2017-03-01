@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Taskoard -- by ilan</title>
+  <title>Task Board -- by ilan</title>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="styles/main2.css">
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
 <nav>
   <div>
-    <a class="logo-link" href="#">
-      <img alt="Logo" src="assets/taskboard-logo.svg">
-    </a>
-    <a class="nav-link" href="#">Boards</a>
+    <!--<a class="logo-link" href="#">-->
+    <img alt="Logo" src="assets/taskboard-logo.svg">
+    <!--</a>-->
+    <a class="nav-link" href="#">Board</a>
     <a class="nav-link" href="#">Members</a>
   </div>
 </nav>
@@ -23,155 +23,35 @@
 
   <div id="justLists">
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"> Backlog </h3>
+    <div class="listFull">
+      <div class="titleInput">
+        <h3>Backlog</h3>
+        <input value="Backlog" class="hiddenInput">
       </div>
-
-      <div class="list-body">
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="panel-footer">Add a card...</div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"> TODO </h3>
-      </div>
-
-      <div class="list-body">
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel-footer">Add a card...</div>
-    </div>
-
-    <div id="listID">
-      <div class="panel-heading panel panel-default">
-        <h3 class="panel-title"> Progress </h3>
-      </div>
-      <div class="list-body">
-        --
-      </div>
-      <div class="panel-footer">
-        <a href="#" id="add-card" type="button">Add a card...</a>
+      <ul class="list-body">
+        <li class="card">--</li>
+        <li class="card">--</li>
+        <li class="card">--</li>
+        <li class="card">--</li>
+      </ul>
+      <div>
+        <a href="#" class="add-card" type="button">Add a card...</a>
       </div>
     </div>
 
-    <div class="panel panel-default list-div">
-      <div class="panel-heading">
-        <h3 class="panel-title"> Done </h3>
+    <div class="listFull" id="listID">
+      <div class="titleInput">
+        <h3>Progress</h3>
+        <a href="#" class="del-list">D</a>
+        <div class="del-list-btn">Delete List?</div>
+        <input value="Progress" class="hiddenInput">
       </div>
-      <div class="list-body">
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
-
-        <div class="card-body">
-          <ul class="card">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-          </ul>
-        </div>
+      <ul>
+        <li class="card">--</li>
+      </ul>
+      <div>
+        <a href="#" class="add-card" type="button">Add a card...</a>
       </div>
-      <div class="panel-footer">Add a card...</div>
     </div>
 
   </div>

@@ -1,29 +1,36 @@
 /**
  * Create a new list, add listeners to relevant elements in that list.
  */
-function createNewList() {
+function createNewList(NewTitle) {
+  console.log(NewTitle);
+
   const justListsDiv = document.getElementById('justLists');
 
-  justListsDiv.innerHTML += `<div class="listFull" id="listID">
+  // create element: += `<div class="listFull"> </div>`
+  //justListsDiv.createElement('div');
+
+  justListsDiv.innerHTML += `<div class="listFull">
       <div class="titleInput">
-        <h3>New List</h3>
+        <h3>${NewTitle}</h3>
         <input value="New List" class="hiddenInput">
         <div class="dropdown">
           <button class="de-list btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="caret"></span>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
             <li class="delete-link"><a href="#">Delete List?</a></li>
           </ul>
         </div>
       </div>
-      <ul class="list-body">
-        <li class="card">--</li>
+      <ul class="list-body panel-body">
       </ul>
-      <div>
-        <a href="#" class="add-card" type="button">Add a card...</a>
+            <div class="panel-footer">
+        <button class="add-card">Add a card...</button>
       </div>
     </div>`;
+
+  // insert the new element before add list button
+  // innerHtml ... </div>
 
   addEventCard();
   addEventTitle();
@@ -31,6 +38,17 @@ function createNewList() {
   addEventInputBlur();
   addEventCaret();
   addEventLi();
+
+
+  const newListTitle = justListsDiv.querySelector('h3');
+
+  if (NewTitle !== undefined) {
+    newListTitle.innerHTML = NewTitle.title;
+  }
+}
+
+function addListClickHandler(event) {
+  createNewList();
 }
 
 /**
@@ -48,7 +66,11 @@ function createNewCard(event) {
   const cardsParent = event.target.parentNode.parentNode;
   // console.log(cardsParent);
 
-  cardsParent.querySelector('.list-body').innerHTML += `<li class="card">--</li>`;
+  cardsParent.querySelector('.list-body').innerHTML += `<li class="card">
+                    <button type="button" class="btn btn-xs btn-info btn-default">Edit card</button>
+          <span class="label label-primary">BC</span>
+          <span class="label label-primary">DW</span>
+</li>`;
   // console.log(event);
 }
 
@@ -67,10 +89,10 @@ function addEventTitle() {
 
       // hide the title.
       target.style.display = 'none';
-      // show the input with focus.
+      // show the input with focus and pick current value from h3
       target.parentNode.querySelector('input').style.display = "inline-block";
       target.parentNode.querySelector('input').focus();
-      // console.log(target);
+      target.parentNode.querySelector('input').value = title.textContent;
     });
   }
 }
@@ -191,9 +213,45 @@ function addEventLi() {
  */
 addEventCard();
 const createNewListBtn = document.getElementById('btn-add-list');
-createNewListBtn.addEventListener('click', createNewList);
+createNewListBtn.addEventListener('click', addListClickHandler);
 addEventTitle();
 addEventInput();
 addEventInputBlur();
 addEventCaret();
 addEventLi();
+
+
+/**
+ * XMLHttpRequest GET JSON
+ */
+
+// function checks the type and content of data from server, the event type is 'load'.
+function xhrLoadListener(event) {
+  // look! it's an object.
+  const myXhr = event.target;
+
+  // this is the raw data in that object.
+  // console.log(myXhr.response);
+
+  // btw, if you want to check the content-type from the server response-header, do this:
+  // const contentType = myXhr.getResponseHeader('content-type');
+
+  // parsing the JSON string into a workable JS object.
+  JSON.parse(myXhr.responseText);
+  let myData = JSON.parse(myXhr.response);
+
+  // console.log(myData.board);
+
+  for (const list of myData.board) {
+    createNewList(list.title);
+  }
+}
+
+// Initialize (Init) the Ajax request.
+const xhr = new XMLHttpRequest();
+// Setup the request - event listener when the server starts loading data.
+xhr.addEventListener("load", xhrLoadListener);
+// Open the data transaction.
+xhr.open("GET", "assets/board.json");
+//z
+xhr.send();

@@ -13,7 +13,6 @@ html {
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 100%;
   margin: 0;
 }
 
@@ -89,9 +88,9 @@ nav a:nth-child(2) {
   flex-direction: row;
   align-items: flex-start;
   padding-top: 70px;
-  /*background-color: #0079bf;*/
-
 }
+
+/*lists*/
 
 #justLists {
   display: flex;
@@ -102,66 +101,106 @@ nav a:nth-child(2) {
 
 .listFull {
   max-height: 550px;
-  width: 220px;
+  width: 250px;
+  margin: 0 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
+.list-body {
+  overflow-y: auto;
+  min-height: 30px;
+  max-height: 65vh;
+  border-top: 1px solid #ddd;
+  margin-bottom: 0;
+}
+
+.dropdown {
+  position: absolute;
+  top: 12px;
+  left: 202px;
+}
+
+/* List titles edit */
+
+.hiddenInput {
+  display: none;
+}
+
 .titleInput {
   display: flex;
+  position: relative;
   background-color: #f5f5f5;
   margin: 0;
   padding-left: 15px;
   padding-top: 1px;
   padding-bottom: 1px;
-  font-size: 75%;
-}
-
-.titleInput a {
-
+  /*font-size: 75%;*/
 }
 
 .titleInput h3 {
   cursor: pointer;
+  margin: 15px 0 15px 0;
 }
 
 .titleInput input {
-  margin: 11px 11px 12px 2px;
-}
-
-.list-body {
-  overflow-y: auto;
+  margin: 15px 0 15px 0;
+  outline: none;
 }
 
 /* cards */
 
 .card {
-  border: 1px solid red;
+  border: 1px solid #bce8f1;
+  border-radius: 4px;
   list-style: none;
-  padding-left: 10px;
-  margin: 0;
-  height: 100px;
-  width: 100px;
-  background-color: grey;
+  min-height: 120px;
+  padding: 10px;
+  margin-bottom: 20px;
 }
+
+.card button {
+  display: none;
+}
+
+.card:hover button {
+  display: block;
+}
+
+/* "Add a list" button */
 
 .add-list > button {
-  width: 100px;
+  width: 200px;
   margin-left: 10px;
   background-color: #d9edf7;
+  text-align: left;
+  border-color: #bce8f1;
+  box-shadow: 0 1px 1px rgba(188, 232, 241, .05);
+
 }
 
-.add-card {
+.add-list > button:hover {
+  background-color: #96cde9;
+  border-color: #91bbc4;
+}
+
+/* "Add a card" button (bottom of lists) */
+
+/*.add-card {*/
+  /*display: block;*/
+  /*color: #333;*/
+  /*background-color: #f5f5f5;*/
+  /*padding: 10px 15px;*/
+/*}*/
+
+.panel-footer > button {
+  background: none;
+  border: 0;
+  color: inherit;
   display: block;
-  color: #333;
-  background-color: #f5f5f5;
-  padding: 10px 15px;
-}
-
-.hiddenInput {
-  display: none;
+  outline: none;
 }
 
 

@@ -66,11 +66,15 @@ function createNewCard(event) {
   const cardsParent = event.target.parentNode.parentNode;
   // console.log(cardsParent);
 
-  cardsParent.querySelector('.list-body').innerHTML += `<li class="card">
-                    <button type="button" class="btn btn-xs btn-info btn-default">Edit card</button>
-          <span class="label label-primary">BC</span>
-          <span class="label label-primary">DW</span>
-</li>`;
+  cardsParent.querySelector('.list-body').innerHTML +=
+    `<li class="card">
+      <button type="button" class="btn btn-xs btn-info btn-default">Edit card</button>
+      <p>Get the text content of the first element in the document</p>
+      <div class="cardLabels">
+        <span title="666" class="label label-primary card-label">1</span>
+        <span class="label label-primary card-label">2</span>
+      </div>
+     </li>`;
   // console.log(event);
 }
 

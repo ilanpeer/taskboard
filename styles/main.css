@@ -153,6 +153,7 @@ nav a:nth-child(2) {
 /* cards */
 
 .card {
+  position: relative;
   border: 1px solid #bce8f1;
   border-radius: 4px;
   list-style: none;
@@ -162,11 +163,31 @@ nav a:nth-child(2) {
 }
 
 .card button {
+  position: absolute;
+  left: 67.88%;
   display: none;
 }
 
 .card:hover button {
   display: block;
+}
+
+.card p {
+  /*padding: 5px 0 0 0;*/
+  /*position: relative;*/
+}
+
+.cardLabels {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  left: 70%;
+  top: 80%;
+}
+
+.card-label {
+  margin-left: 5px;
+  cursor: default;
 }
 
 /* "Add a list" button */
@@ -189,10 +210,10 @@ nav a:nth-child(2) {
 /* "Add a card" button (bottom of lists) */
 
 /*.add-card {*/
-  /*display: block;*/
-  /*color: #333;*/
-  /*background-color: #f5f5f5;*/
-  /*padding: 10px 15px;*/
+/*display: block;*/
+/*color: #333;*/
+/*background-color: #f5f5f5;*/
+/*padding: 10px 15px;*/
 /*}*/
 
 .panel-footer > button {

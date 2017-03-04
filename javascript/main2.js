@@ -1,6 +1,8 @@
 /**
  * Create a new list, add listeners to relevant elements in that list.
  */
+const createNewListBtn = document.getElementById('btn-add-list');
+createNewListBtn.addEventListener('click', createNewList);
 
 function createNewList(NewTitle) {
   // console.log(NewTitle);
@@ -46,10 +48,6 @@ function createNewList(NewTitle) {
   if (NewTitle !== undefined) {
     newListTitle.innerHTML = NewTitle.title;
   }
-}
-
-function addListClickHandler(event) {
-  createNewList();
 }
 
 /**
@@ -217,8 +215,7 @@ function addEventLi() {
  * Functions call.
  */
 addEventCard();
-const createNewListBtn = document.getElementById('btn-add-list');
-createNewListBtn.addEventListener('click', addListClickHandler);
+
 addEventTitle();
 addEventInput();
 addEventInputBlur();
@@ -242,12 +239,12 @@ function xhrLoadListener(event) {
   // const contentType = myXhr.getResponseHeader('content-type');
 
   // parsing the JSON string into a workable JS object.
-  JSON.parse(myXhr.responseText);
-  let myData = JSON.parse(myXhr.response);
+  const myData = JSON.parse(myXhr.responseText);
 
-  // console.log(myData.board);
+  console.log(myData.board);
 
-  for (const list of myData.board) {
+  for (let list of myData.board) {
+    console.log(list.title);
     createNewList(list.title);
   }
 }

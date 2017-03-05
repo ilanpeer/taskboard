@@ -1,68 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Task Board -- by ilan</title>
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
-
-<nav>
-  <div>
-    <!--<a class="logo-link" href="#">-->
-    <img alt="Logo" src="assets/taskboard-logo.svg">
-    <!--</a>-->
-    <a class="nav-link" href="#">Board</a>
-    <a class="nav-link" href="#">Members</a>
-  </div>
-</nav>
-
-
-<div class="flexContainer">
-
-  <div id="justLists">
-
-    <div class="listFull">
-      <div class="titleInput">
-        <h3>Backlog</h3>
-        <input value="Backlog" class="hiddenInput">
-      </div>
-      <ul class="list-body">
-        <li class="card">--</li>
-        <li class="card">--</li>
-        <li class="card">--</li>
-        <li class="card">--</li>
+<div class="listFull">
+  <div class="titleInput">
+    <h3>${list.title}</h3>
+    <input value="New List" class="hiddenInput">
+    <div class="dropdown">
+      <button class="de-list btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+        <li class="delete-link">
+          <a href="#">Delete List?</a>
+        </li>
       </ul>
-      <div>
-        <a href="#" class="add-card" type="button">Add a card...</a>
-      </div>
     </div>
-
-    <div class="listFull" id="listID">
-      <div class="titleInput">
-        <h3>Progress</h3>
-        <a href="#" class="del-list">D</a>
-        <div class="del-list-btn">Delete List?</div>
-        <input value="Progress" class="hiddenInput">
-      </div>
-      <ul>
-        <li class="card">--</li>
-      </ul>
-      <div>
-        <a href="#" class="add-card" type="button">Add a card...</a>
-      </div>
-    </div>
-
   </div>
-
-  <div class="add-list">
-    <button id="btn-add-list" type="button" class="btn-add-list btn btn-default">Add a list...</button>
+  <ul class="list-body panel-body">
+  </ul>
+  <div class="panel-footer">
+    <button class="add-card">Add a card...</button>
   </div>
 </div>
-
-<script src="javascript/main.js"></script>
-</body>
-
-
-</html>

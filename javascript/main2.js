@@ -2,38 +2,72 @@
  * Create a new list, add listeners to relevant elements in that list.
  */
 const createNewListBtn = document.getElementById('btn-add-list');
-createNewListBtn.addEventListener('click', createNewList);
+createNewListBtn.addEventListener('click', () => {
+  const emptyList = {
+    "title": "New List",
+    "tasks": []
+  };
 
-function createNewList(NewTitle) {
-  // console.log(NewTitle);
+  createNewList(emptyList);
+});
+
+function createNewList(list) {
+  //console.log(list);
 
   const justListsDiv = document.getElementById('justLists');
 
-  // create element: += `<div class="listFull"> </div>`
-  //justListsDiv.createElement('div');
+  const listFull = document.createElement('div');
+  listFull.className = 'listFull';
 
-  justListsDiv.innerHTML += `<div class="listFull">
-      <div class="titleInput">
-        <h3>${NewTitle}</h3>
-        <input value="New List" class="hiddenInput">
-        <div class="dropdown">
-          <button class="de-list btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-            <li class="delete-link"><a href="#">Delete List?</a></li>
-          </ul>
-        </div>
-      </div>
-      <ul class="list-body panel-body">
-      </ul>
-            <div class="panel-footer">
-        <button class="add-card">Add a card...</button>
-      </div>
-    </div>`;
+  const listInfo = document.createElement('div');
+  listInfo.className = 'titleInput';
 
-  // insert the new element before add list button
-  // innerHtml/insertAdjacentHTML(beforeend, '<div class="titleInput">')
+  const titleH3 = document.createElement('h3');
+  titleH3.innerHTML = 'New List';
+
+  const titleInput = document.createElement('input');
+  titleInput.className = 'hiddenInput';
+
+  const listDropdown = document.createElement('div');
+  listDropdown.className = 'dropdown';
+
+  const titleDropdown = document.createElement('button');
+  titleDropdown.className = 'de-list btn btn-default dropdown-toggle';
+  titleDropdown.setAttribute('id', 'KKK');
+  titleDropdown.setAttribute('type', 'button');
+
+  const titleCaret = document.createElement('span');
+  titleCaret.className = 'caret';
+
+  const headerUl = document.createElement('ul');
+  headerUl.className = 'dropdown-menu dropdown-menu-right';
+
+  const headerLi = document.createElement('li');
+  headerLi.className = 'delete-link';
+
+  const headerLink = document.createElement('a');
+  headerLink.setAttribute('href', '#');
+
+
+  listInfo.appendChild(listDropdown).appendChild(titleDropdown).appendChild(titleCaret).appendChild(headerUl).appendChild(headerLi).appendChild(headerLink);
+  console.log(listInfo);
+
+  const listBodyUl = document.createElement('ul');
+  listBodyUl.className = 'list-body panel-body';
+
+  const listFooter = document.createElement('div');
+  listFooter.className = 'panel-footer';
+
+  const addCardBtn = document.createElement('button');
+  addCardBtn.className = 'add-card';
+  listFooter.appendChild(addCardBtn);
+
+  // listFull.appendChild(listBodyUl).appendChild()
+
+
+  // console.log(listFull);
+  // justListsDiv.innerHTML += listFull;
+
 
   addEventCard();
   addEventTitle();
@@ -42,12 +76,6 @@ function createNewList(NewTitle) {
   addEventCaret();
   addEventLi();
 
-
-  const newListTitle = justListsDiv.querySelector('h3');
-
-  if (NewTitle !== undefined) {
-    newListTitle.innerHTML = NewTitle.title;
-  }
 }
 
 /**
@@ -61,20 +89,35 @@ function addEventCard() {
     // console.log(addCardBtn);
   }
 }
+
 function createNewCard(event) {
   const cardsParent = event.target.parentNode.parentNode;
   // console.log(cardsParent);
 
   cardsParent.querySelector('.list-body').innerHTML +=
     `<li class="card">
-      <button type="button" class="btn btn-xs btn-info btn-default">Edit card</button>
+      <button type="button" class="btn btn-xs btn-edit-card btn-info btn-default">Edit card</button>
       <p>Get the text content of the first element in the document</p>
       <div class="cardLabels">
         <span title="666" class="label label-primary card-label">1</span>
-        <span class="label label-primary card-label">2</span>
+        <span title="667" class="label label-primary card-label">2</span>
       </div>
      </li>`;
   // console.log(event);
+
+  // add listener on "Edit Card" btn
+  const editCardsBtns = document.getElementsByClassName('btn-edit-card');
+  // console.log(editCardsBtns);
+  editCardsBtns.addEventListener('click', showEditCardModal);
+}
+
+/**
+ * Show and hide card edit modal.
+ */
+function showEditCardModal() {
+  const cardModal = document.getElementsByClassName('edit-card-modal');
+  // console.log(cardModal);
+  cardModal.display.style = 'block';
 }
 
 /**
@@ -147,7 +190,7 @@ function addEventInputBlur() {
       target.style.display = 'none';
 
       // show title with new value.
-      target.parentNode.querySelector('h3').innerHTML = inputValue;
+      // target.parentNode.querySelector('h3').innerHTML = inputValue;
       target.parentNode.querySelector('h3').style.display = "block";
 
     });
@@ -215,7 +258,6 @@ function addEventLi() {
  * Functions call.
  */
 addEventCard();
-
 addEventTitle();
 addEventInput();
 addEventInputBlur();
@@ -241,11 +283,11 @@ function xhrLoadListener(event) {
   // parsing the JSON string into a workable JS object.
   const myData = JSON.parse(myXhr.responseText);
 
-  console.log(myData.board);
+  // console.log(myData.board);
 
   for (let list of myData.board) {
-    console.log(list.title);
-    createNewList(list.title);
+    // console.log(list);
+    createNewList(list);
   }
 }
 

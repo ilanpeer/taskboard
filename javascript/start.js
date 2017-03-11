@@ -17,3 +17,7 @@ for (var bn=0; bn < myList.length; bn++) {
   console.log('There are ' + myList[bn] + ' in your bag');
 }
 
+
+let counter = 0;
+
+

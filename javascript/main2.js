@@ -7,6 +7,11 @@ createNewListBtn.addEventListener('click', () => {
   createNewList(emptyList);
 });
 
+const appData = {
+  lists: [],
+  members: []
+};
+
 /**
  * Create a new list, add listeners to relevant elements in that list.
  */
@@ -62,32 +67,26 @@ function createNewList(list) {
 
   // add event listener to delete list dropdown.
   titleDropdown.addEventListener('click', (event) => {
-    if (headerUl.style.display === 'none' || !headerUl.style.display) {
-      headerUl.style.display = "inline-block";
-    } else {
-      headerUl.style.display = 'none';
-    }
+    headerUl.style.display = 'block';
   });
 
-    headerLi.addEventListener('click', (event) => {
-      const target = event.target;
-      const parent = target.closest('.listFull');
-      const titleText = parent.querySelector('h3').innerHTML;
-      const dropDown = parent.querySelector('.dropdown-menu');
-      // Show confirm message with the titleText name.
-      const confirmMsg = confirm(`Deleting ${titleText} list. Are you sure?`);
+  headerLi.addEventListener('click', (event) => {
+    const target = event.target;
+    const parent = target.closest('.listFull');
+    const titleText = parent.querySelector('h3').innerHTML;
+    const dropDown = parent.querySelector('.dropdown-menu');
+    // Show confirm message with the titleText name.
+    const confirmMsg = confirm(`Deleting ${titleText} list. Are you sure?`);
 
-      // Delete this list.
-      if (confirmMsg) {
-        parent.remove();
-      }
-      // Close confirm, close delete list dropdown.
-      else {
-        dropDown.style.display = 'none';
-      }
-    });
-
-
+    // Delete this list.
+    if (confirmMsg) {
+      parent.remove();
+    }
+    // Close confirm, close delete list dropdown.
+    else {
+      dropDown.style.display = 'none';
+    }
+  });
 
   // Appending elements to nest amongst.
   listInput.appendChild(titleH3);
@@ -139,7 +138,7 @@ function createNewCard(event) {
 
   // add listener on "Edit Card" btn
   const editCardsBtns = document.querySelector('.btn-edit-task');
-  console.log(editCardsBtns);
+  //console.log(editCardsBtns);
 
   editCardsBtns.addEventListener('click', () => {
     const cardModal = document.querySelector('.edit-card-modal');
@@ -149,118 +148,158 @@ function createNewCard(event) {
   });
 }
 
-  /**
-   * Edit list title.
-   */
-  function addListenerH3Title() {
-    const listOfTitles = document.querySelectorAll('h3');
-    // console.log(listOfTitles);
+/**
+ * Edit list title.
+ */
+function addListenerH3Title() {
+  const listOfTitles = document.querySelectorAll('h3');
+  // console.log(listOfTitles);
 
-    for (const title of listOfTitles) {
-      // console.log(title);
-      title.addEventListener('click', (event) => {
-        const target = event.target;
-        // hide the title.
-        target.style.display = 'none';
-        // show the input with focus and pick current value from h3
-        target.parentNode.querySelector('input').style.display = "inline-block";
-        target.parentNode.querySelector('input').focus();
-        target.parentNode.querySelector('input').value = title.textContent;
-      });
-    }
+  for (const title of listOfTitles) {
+    // console.log(title);
+    title.addEventListener('click', (event) => {
+      const target = event.target;
+      // hide the title.
+      target.style.display = 'none';
+      // show the input with focus and pick current value from h3
+      target.parentNode.querySelector('input').style.display = "inline-block";
+      target.parentNode.querySelector('input').focus();
+      target.parentNode.querySelector('input').value = title.textContent;
+    });
   }
+}
 
-  /**
-   * Add key listener on input field, return value.
-   */
-  function addListenerInput() {
-    const listOfInputs = document.querySelectorAll('input');
-    // console.log(listOfInputs);
+/**
+ * Add key listener on input field, return value.
+ */
+function addListenerInput() {
+  const listOfInputs = document.querySelectorAll('input');
+  // console.log(listOfInputs);
 
-    for (const input of listOfInputs) {
-      // console.log(input);
-      input.addEventListener('keydown', (event) => {
-        // If Enter key pressed.
-        if (event.keyCode === 13) {
-          const target = event.target;
-          // console.log(target);
-          // Get value from input and close input.
-          const inputValue = target.value;
-          // console.log(target.value);
-          target.style.display = 'none';
-          // Show title with new value.
-          target.parentNode.querySelector('h3').innerHTML = inputValue;
-          target.parentNode.querySelector('h3').style.display = "block";
-        }
-      });
-    }
-  }
-
-  /**
-   * Add blur/focus listener on input field, return value.
-   */
-  function addListenerInputBlur() {
-    const listOfInputs = document.querySelectorAll('input');
-    // console.log(listOfInputs);
-
-    for (const input of listOfInputs) {
-      // console.log(input);
-      input.addEventListener('blur', (event) => {
+  for (const input of listOfInputs) {
+    // console.log(input);
+    input.addEventListener('keydown', (event) => {
+      // If Enter key pressed.
+      if (event.keyCode === 13) {
         const target = event.target;
         // console.log(target);
-
-        // get value from input and close input.
+        // Get value from input and close input.
         const inputValue = target.value;
         // console.log(target.value);
         target.style.display = 'none';
-
-        // show title with new value.
+        // Show title with new value.
         target.parentNode.querySelector('h3').innerHTML = inputValue;
         target.parentNode.querySelector('h3').style.display = "block";
-
-      });
-    }
+      }
+    });
   }
+}
 
-  /**
-   * Functions call.
-   */
-  addListenerNewCard();
-  addListenerH3Title();
-  addListenerInput();
-  addListenerInputBlur();
+/**
+ * Add blur/focus listener on input field, return value.
+ */
+function addListenerInputBlur() {
+  const listOfInputs = document.querySelectorAll('input');
+  // console.log(listOfInputs);
 
-  /**
-   * XMLHttpRequest GET JSON
-   */
+  for (const input of listOfInputs) {
+    // console.log(input);
+    input.addEventListener('blur', (event) => {
+      const target = event.target;
+      // console.log(target);
+
+      // get value from input and close input.
+      const inputValue = target.value;
+      // console.log(target.value);
+      target.style.display = 'none';
+
+      // show title with new value.
+      target.parentNode.querySelector('h3').innerHTML = inputValue;
+      target.parentNode.querySelector('h3').style.display = "block";
+
+    });
+  }
+}
+
+/**
+ * Add listener for hashchange (changes in the URL hash name) and toggle board/members pages.
+ */
+window.addEventListener('hashchange', (event) => {
+  const navBar = document.querySelector('.navbar-nav');
+  const hash = window.location.hash;
+  console.log(hash);
+  const membersPage = document.querySelector('.members-page');
+  const boardPage = document.querySelector('.boards-page');
+  const currentActive = navBar.querySelector('.main-nav');
+
+  console.log(currentActive);
+
+  if (hash === '#members') {
+    boardPage.classList.add('hidden');
+    membersPage.classList.remove('hidden');
+    currentActive.classList.toggle('active');
+    // currentActive.classList.add('active');
+    // currentActive.classList.remove('active');
+
+  }
+  if (hash === '#boards') {
+    membersPage.classList.add('hidden');
+    boardPage.classList.remove('hidden');
+    currentActive.classList.toggle('active');
+    // currentActive.classList.add('active');
+    // currentActive.classList.remove('active');
+  }
+});
+
+
+/**
+ * Functions call.
+ */
+addListenerNewCard();
+addListenerH3Title();
+addListenerInput();
+addListenerInputBlur();
+
+/**
+ * XMLHttpRequest GET JSON
+ */
 
 // function checks the type and content of data from server, the event type is 'load'.
-  function xhrLoadListener(event) {
-    // look! it's an object.
-    const myXhr = event.target;
+function xhrLoadListener(event) {
+  // look! it's an object.
+  const myXhr = event.target;
+  // console.log(myXhr);
 
-    // this is the raw data in that object.
-    // console.log(myXhr.response);
+  // this is the raw data in that object.
+  // console.log(myXhr.response);
 
-    // btw, if you want to check the content-type from the server response-header, do this:
-    // const contentType = myXhr.getResponseHeader('content-type');
+  // btw, if you want to check the content-type from the server response-header, do this:
+  // const contentType = myXhr.getResponseHeader('content-type');
 
-    // parsing the JSON string into a workable JS object.
-    const myData = JSON.parse(myXhr.responseText);
+  // parsing the JSON string into a workable JS object.
+  const myData = JSON.parse(myXhr.responseText);
 
-    // console.log(myData.board);
+  console.log(myData.board);
+  console.log(myData.board[3]);
 
-    for (let list of myData.board) {
-      // console.log(list.title);
-      createNewList(list);
-    }
+  for (let list of myData.board) {
+    // console.log(list.title);
+    createNewList(list);
   }
+  for (i = 0; i < mydata.board.length; i++) {
+    const tasks = [tasks.text];
+  }
+  // for (let tasks of list) {
+  //   addNewCards(list)
+  // }
+}
+
 
 // Initialize (Init) the Ajax request.
-  const xhr = new XMLHttpRequest();
+const xhr = new XMLHttpRequest();
 // Setup the request - event listener when the server starts loading data.
-  xhr.addEventListener("load", xhrLoadListener);
+xhr.addEventListener("load", xhrLoadListener);
 // Open the data transaction.
-  xhr.open("GET", "assets/board.json");
+xhr.open("GET", "assets/board.json");
 //z
-  xhr.send();
+xhr.send();

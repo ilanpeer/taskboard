@@ -7,10 +7,7 @@ createNewListBtn.addEventListener('click', () => {
   createNewList(emptyList);
 });
 
-const appData = {
-  lists: [],
-  members: []
-};
+let appData = {};
 
 /**
  * Create a new list, add listeners to relevant elements in that list.
@@ -199,8 +196,8 @@ function addListenerInput() {
  * Add blur/focus listener on input field, return value.
  */
 function addListenerInputBlur() {
-  const listOfInputs = document.querySelectorAll('input');
-  // console.log(listOfInputs);
+  const listOfInputs = document.querySelectorAll('div.flexContainer input');
+   // console.log(listOfInputs);
 
   for (const input of listOfInputs) {
     // console.log(input);
@@ -227,12 +224,12 @@ function addListenerInputBlur() {
 window.addEventListener('hashchange', (event) => {
   const navBar = document.querySelector('.navbar-nav');
   const hash = window.location.hash;
-  console.log(hash);
+  // console.log(hash);
   const membersPage = document.querySelector('.members-page');
   const boardPage = document.querySelector('.boards-page');
   const currentActive = navBar.querySelector('.main-nav');
 
-  console.log(currentActive);
+  // console.log(currentActive);
 
   if (hash === '#members') {
     boardPage.classList.add('hidden');
@@ -279,15 +276,13 @@ function xhrLoadListener(event) {
   // parsing the JSON string into a workable JS object.
   const myData = JSON.parse(myXhr.responseText);
 
-  console.log(myData.board);
-  console.log(myData.board[3]);
+  // console.log(myData.board);
+  appData = myData.board;
+  console.log(appData);
 
-  for (let list of myData.board) {
+  for (let list of appData) {
     // console.log(list.title);
     createNewList(list);
-  }
-  for (i = 0; i < mydata.board.length; i++) {
-    const tasks = [tasks.text];
   }
   // for (let tasks of list) {
   //   addNewCards(list)

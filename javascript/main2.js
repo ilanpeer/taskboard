@@ -13,12 +13,13 @@ let appData = {};
  * Create a new list, add listeners to relevant elements in that list.
  */
 function createNewList(list) {
-  //console.log(list);
+  // console.log(list);
 
   const justListsDiv = document.getElementById('justLists');
 
-  // Creating HTML elements of empty list.
+  // Creating HTML elements of empty list. Adding a UUID to every new list.
   const listFull = document.createElement('div');
+  listFull.setAttribute('data-id', uuid());
   const listInput = document.createElement('div');
 
   listFull.className = 'listFull';
@@ -62,11 +63,10 @@ function createNewList(list) {
   addCardBtn.innerHTML = 'Add a card...';
   listFooter.appendChild(addCardBtn);
 
-  // add event listener to delete list dropdown.
+  // Add listener to delete list dropdown, bring confirm with title name and remove list.
   titleDropdown.addEventListener('click', (event) => {
     headerUl.style.display = 'block';
   });
-
   headerLi.addEventListener('click', (event) => {
     const target = event.target;
     const parent = target.closest('.listFull');
@@ -85,6 +85,27 @@ function createNewList(list) {
     }
   });
 
+
+  // Extract list tasks from JSON/appData data.
+  // console.log(appData[0].tasks[0]);
+
+
+  // Add listener on 'Add a Card' button, and create new card inside its own list.
+  addCardBtn.addEventListener('click', (event) => {
+    const cardsParent = event.target.parentNode.parentNode;
+    // console.log(cardsParent);
+
+    cardsParent.querySelector('.list-body').innerHTML +=
+      `<li class="card" data-id=${uuid()}>
+      <button type="button" class="btn btn-xs btn-edit-task btn-info btn-default">Edit card</button>
+      <p>Get the text content of the first element in the document</p>
+      <div class="cardLabels">
+        <span title="666" class="label label-primary card-label">1</span>
+        <span title="667" class="label label-primary card-label">2</span>
+      </div>
+     </li>`;
+  });
+
   // Appending elements to nest amongst.
   listInput.appendChild(titleH3);
   listInput.appendChild(inputField);
@@ -99,50 +120,20 @@ function createNewList(list) {
   // Append the created list in pre-coded HTML.
   justListsDiv.appendChild(listFull);
 
-  addListenerNewCard();
   addListenerH3Title();
   addListenerInput();
   addListenerInputBlur();
 
 }
 
-/**
- * Add click listener on 'Add a Card' button, and create new card inside its own list.
- */
-function addListenerNewCard() {
-  const addCardBtn = document.getElementsByClassName('add-card');
-
-  for (const card of addCardBtn) {
-    card.addEventListener('click', createNewCard);
-    // console.log(addCardBtn);
+// Check if both JSON are loaded, it's ok to build app UI.
+function isLoadingDone() {
+  if (appData.lists.length && appData.members.length) {
+    console.log(appData.members.length);
+    return true;
+  } else {
+    return false;
   }
-}
-
-function createNewCard(event) {
-  const cardsParent = event.target.parentNode.parentNode;
-  // console.log(cardsParent);
-
-  cardsParent.querySelector('.list-body').innerHTML +=
-    `<li class="card">
-      <button type="button" class="btn btn-xs btn-edit-task btn-info btn-default">Edit card</button>
-      <p>Get the text content of the first element in the document</p>
-      <div class="cardLabels">
-        <span title="666" class="label label-primary card-label">1</span>
-        <span title="667" class="label label-primary card-label">2</span>
-      </div>
-     </li>`;
-  // console.log(event);
-
-  // add listener on "Edit Card" btn
-  const editCardsBtns = document.querySelector('.btn-edit-task');
-  //console.log(editCardsBtns);
-
-  editCardsBtns.addEventListener('click', () => {
-    const cardModal = document.querySelector('.edit-card-modal');
-    if (cardModal.style.display === 'none') {
-      cardModal.display.style = 'block';
-    }
-  });
 }
 
 /**
@@ -197,7 +188,7 @@ function addListenerInput() {
  */
 function addListenerInputBlur() {
   const listOfInputs = document.querySelectorAll('div.flexContainer input');
-   // console.log(listOfInputs);
+  // console.log(listOfInputs);
 
   for (const input of listOfInputs) {
     // console.log(input);
@@ -219,40 +210,49 @@ function addListenerInputBlur() {
 }
 
 /**
- * Add listener for hashchange (changes in the URL hash name) and toggle board/members pages.
+ * Add listener for hashchange (changes in the URL hash name).
  */
-window.addEventListener('hashchange', (event) => {
-  const navBar = document.querySelector('.navbar-nav');
+window.addEventListener('hashchange', (evt) => {
+  initPageByHash();
+});
+
+/**
+ * Main function - build the UI according to hash in URL.
+ */
+function initPageByHash() {
   const hash = window.location.hash;
-  // console.log(hash);
+  const navBar = document.querySelector('.navbar-nav');
   const membersPage = document.querySelector('.members-page');
   const boardPage = document.querySelector('.boards-page');
   const currentActive = navBar.querySelector('.main-nav');
+  if (hash === undefined || hash !== '#Members' && hash !== '#Board') {
+    console.log('--hash here--');
+    window.location.hash = '#board';
+  }
 
-  // console.log(currentActive);
+  if (hash === '#board') {
+    console.log('ola');
+    membersPage.classList.add('hidden');
+    boardPage.classList.remove('hidden');
+    currentActive.classList.toggle('active');
+    for (let list of appData.lists) {
+      createNewList(list);
+    }
+  }
 
   if (hash === '#members') {
     boardPage.classList.add('hidden');
     membersPage.classList.remove('hidden');
     currentActive.classList.toggle('active');
-    // currentActive.classList.add('active');
-    // currentActive.classList.remove('active');
-
+    // should be function of building member page.
+    // createMembersPage(members-data);
   }
-  if (hash === '#boards') {
-    membersPage.classList.add('hidden');
-    boardPage.classList.remove('hidden');
-    currentActive.classList.toggle('active');
-    // currentActive.classList.add('active');
-    // currentActive.classList.remove('active');
-  }
-});
+}
 
 
 /**
  * Functions call.
  */
-addListenerNewCard();
 addListenerH3Title();
 addListenerInput();
 addListenerInputBlur();
@@ -261,40 +261,81 @@ addListenerInputBlur();
  * XMLHttpRequest GET JSON
  */
 
-// function checks the type and content of data from server, the event type is 'load'.
-function xhrLoadListener(event) {
-  // look! it's an object.
+// Initialize (Init) the Ajax BOARD! request.
+function getBoardData() {
+  const xhr = new XMLHttpRequest();
+// Setup the request - event listener when the server starts loading data.
+  xhr.addEventListener("load", boardDataHandle);
+// Open the data transaction.
+  xhr.open("GET", "assets/board.json");
+//z
+  xhr.send();
+}
+
+// Function checks the type and content of data from server, and parsing the JSON data to a JS Object.
+function boardDataHandle(event) {
+  // Look! it's an object.
   const myXhr = event.target;
   // console.log(myXhr);
 
-  // this is the raw data in that object.
-  // console.log(myXhr.response);
-
-  // btw, if you want to check the content-type from the server response-header, do this:
+  // BTW, if you want to check the content-type from the server response-header, do this:
   // const contentType = myXhr.getResponseHeader('content-type');
 
-  // parsing the JSON string into a workable JS object.
+  // Parsing the JSON string into a workable JS object.
   const myData = JSON.parse(myXhr.responseText);
 
-  // console.log(myData.board);
-  appData = myData.board;
-  console.log(appData);
+  // Insert all JSON data to local object 'appData'.
+  appData.lists = myData.board;
 
-  for (let list of appData) {
-    // console.log(list.title);
-    createNewList(list);
+  // Checks if the board data is loaded, then creates the lists.
+  if (isLoadingDone()) {
+    initPageByHash();
   }
-  // for (let tasks of list) {
-  //   addNewCards(list)
-  // }
 }
 
-
-// Initialize (Init) the Ajax request.
-const xhr = new XMLHttpRequest();
+// Initialize (Init) the Ajax MEMBERS! request.
+function getMembersData() {
+  const xhrM = new XMLHttpRequest();
 // Setup the request - event listener when the server starts loading data.
-xhr.addEventListener("load", xhrLoadListener);
+  xhrM.addEventListener("load", membersDataHandle);
 // Open the data transaction.
-xhr.open("GET", "assets/board.json");
+  xhrM.open("GET", "assets/members.json");
 //z
-xhr.send();
+  xhrM.send();
+}
+
+// Function checks the type and content of data from server, and parsing the JSON data to a JS Object.
+function membersDataHandle(event) {
+  // Look! it's an object.
+  const myXhr = event.target;
+  // console.log(myXhr);
+
+  // BTW, if you want to check the content-type from the server response-header, do this:
+  // const contentType = myXhr.getResponseHeader('content-type');
+
+  // Parsing the JSON string into a workable JS object.
+  const myData = JSON.parse(myXhr.responseText);
+
+  // Insert all JSON data to local object 'appData'.
+  appData.members = myData.members;
+
+  // Checks if the members data is loaded, then creates the lists.
+  if (isLoadingDone()) {
+    initPageByHash();
+  }
+}
+
+// Once all data is loaded, run
+function getAppData() {
+  getBoardData();
+  getMembersData();
+}
+
+getAppData();
+
+/**
+ * UUID Functions.
+ */
+uuid.v1(); // -> v1 UUID
+uuid.v4(); // -> v4 UUID
+// console.log(uuid.v4());

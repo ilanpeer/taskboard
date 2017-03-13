@@ -18,6 +18,22 @@ for (var bn=0; bn < myList.length; bn++) {
 }
 
 
-let counter = 0;
+function handelPages() {
+  const location = window.location.hash;
 
+  if (location === undefined || location !== '#Members' && location !== '#Board') {
+    window.location.hash = '#Board';
+
+  }
+  if (location === '#Members') {
+    handelMemberMaking(appData);
+    selectedNavLink('member');
+  }
+  if (location === '#Board') {
+
+    handelListMaking(appData.lists);
+    selectedNavLink('board');
+
+  }
+}
 

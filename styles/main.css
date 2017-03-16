@@ -74,16 +74,6 @@ nav a:nth-child(2) {
   text-decoration: none;
 }
 
-/*.nav-link:hover {*/
-/*color: #555;*/
-/*font-weight: 500;*/
-/*}*/
-
-/*.nav-link:active {*/
-/*background-color: #e7e7e7;*/
-/*font-weight: 500;*/
-/*}*/
-
 /* main */
 
 .flexContainer {
@@ -91,7 +81,7 @@ nav a:nth-child(2) {
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: flex-start;
-  padding-top: 70px;
+  /*padding-top: 70px;*/
 }
 
 /*lists*/
@@ -265,5 +255,11 @@ nav a:nth-child(2) {
   outline: none;
 }
 
-
-
+@media (min-width: 0) {
+  .navbar-nav > li > a {
+    padding-top: 15px;
+  }
+  .navbar-nav {
+    margin: 0;
+  }
+}

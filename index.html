@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
-  <title>Task Board -- by ilan</title>
+  <title>Task Board</title>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -68,7 +68,6 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
 <nav>
   <div>
     <ul class="nav navbar-nav">
@@ -78,75 +77,21 @@
     </ul>
   </div>
 </nav>
-
-<div class="members-page hidden">
-  <h2>Taskboard Members</h2>
-  <ul class="list-group">
-    <li class="list-group-item">Gil Tayar
-      <input type="text" class="" value="" placeholder='Add new member'>
-      <div class="members-btns pull-right">
-        <button class="btn btn-info btn-sm">Edit</button>
-        <button class="btn btn-danger btn-sm">Delete</button>
-      </div>
-      <div class="members-edit-btns pull-right">
-        <button class="btn btn-deafult btn-sm">Cancel</button>
-        <button class="btn btn-success btn-sm">Save</button>
-      </div>
-    </li>
-    <li class="list-group-item">Dima Vishnevetsky
-      <input type="text" class="" value="" placeholder='Add new member'>
-      <div class="members-btns pull-right">
-        <button class="btn btn-info btn-sm">Edit</button>
-        <button class="btn btn-danger btn-sm">Delete</button>
-      </div>
-      <div class="members-edit-btns pull-right">
-        <button class="btn btn-deafult btn-sm">Cancel</button>
-        <button class="btn btn-success btn-sm">Save</button>
-      </div>
-    </li>
-    <li class="list-group-item">Alex Ilyaev
-      <input type="text" class="" value="" placeholder='Add new member'>
-      <div class="members-btns pull-right">
-        <button class="btn btn-info btn-sm">Edit</button>
-        <button class="btn btn-danger btn-sm">Delete</button>
-      </div>
-      <div class="members-edit-btns pull-right">
-        <button class="btn btn-deafult btn-sm">Cancel</button>
-        <button class="btn btn-success btn-sm">Save</button>
-      </div>
-    </li>
-    <li class="list-group-item">
-      Bob
-      <input type="text" class="" value="" placeholder='Add new member'>
-      <div class="members-btns pull-right">
-        <button class="btn btn-info btn-sm">Edit</button>
-        <button class="btn btn-danger btn-sm">Delete</button>
-      </div>
-      <div class="members-edit-btns pull-right">
-        <button class="btn btn-deafult btn-sm">Cancel</button>
-        <button class="btn btn-success btn-sm">Save</button>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <input type="text" class="new-member-input form-control" value="Add new member">
-      <button class="btn btn-primary">Add</button>
-    </li>
-  </ul>
+<div class="members-page">
+  <!--Members page-->
 </div>
 
-<div class="flexContainer boards-page">
-  <div id="justLists">
 
+<div class="flexContainer boards-page">
+  <div class="justLists">
+  <!--Lists container-->
   </div>
   <div class="add-list">
-    <button id="btn-add-list" type="button" class="btn btn-add-list btn-default">Add a list...</button>
+  <!--Add list btn-->
   </div>
 </div>
 
 <script src="javascript/uuid.js"></script>
-<script>
-
-</script>
 <script src="javascript/main2.js"></script>
 
 </body>

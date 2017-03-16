@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Taskboard</title>
+</head>
+<body>
+<header>
+
+  <nav class="main-navbar navbar navbar-default navbar-static-top">
+    <div class="logo-container container">
+      <div class="nav-bar-logo-wrapper navbar-header">
+        <div>
+          <a href="#" class= navbar-brand">
+            <img class="logo" alt="Brand" src="assets/tasky-logo-01.svg">
+          </a>
+        </div>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="hight-100 header-link-container active board"><a class="hight-100 " href="#Board">Board</a></li>
+        <li class="header-link-container member"><a class="hight-100 " href="#Members">Members</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</header>
+
+<div class="light-box">
+  <div class="modal-black-mask"></div>
+  <div class="full-height-width " tabindex="-1" role="dialog">
+    <div class="width-panel modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" onclick="toggleModal()" class="close-modal close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="capitalize modal-title">edit card</h4>
+        </div>
+        <div class="light-box-body modal-body">
+          <div class="container">
+            <form class=".form-group">
+              <div class="form-group row">
+                <label for="exampleTextarea" class="width-100 capitalize col-sm-2 col-form-label">card text</label>
+                <div class="width-100 col-sm-10">
+                  <textarea class="txtarea form-control" id="exampleTextarea"  rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 78px;"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="exampleSelect1" class="width-100 capitalize col-sm-2 col-form-label">move to</label>
+                <div class="width-100 col-sm-10">
+                  <select class="move-to-list form-control" id="exampleSelect1">
+
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="width-100 capitalize col-sm-2">members</label>
+                <div class="width-100 col-sm-10">
+                  <div class="check-box-list form-check">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="light-box-footer modal-footer">
+          <button type='action' class="btn-group-left capitalize delete-card btn btn-primary" onclick="deleteCard()">delete card</button>
+          <div class="btn-group-right">
+            <button type="button" onclick="toggleModal()" class="close-modal btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="save-changes btn btn-primary" onclick="saveCardChanges()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+<main>
+
+</main>
+
+<footer>
+
+</footer>
+<script src="js/uuid.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
+<!-- <nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    ...
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="...">
+      </a>
+    </div>
+  </div>
+</nav>
+
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand" href="#"><img class="logo" src="assets/taskboard%20logo.svg" alt="task board logo"></a>
+      </div>
+      </div>
+
+          <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="...">
+      </a>
+    </div>
+ -->

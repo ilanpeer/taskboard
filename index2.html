@@ -1,39 +1,72 @@
-
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
-  <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
-<header>
-  <nav class="navbar navbar-default navbar-static-top">
-
-    <a class="navbar-brand" href="#">
-      <img alt="Brand" src="assets/taskboard%20logo.svg" class="logo">
-    </a>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active board-btn"><a href="#board">Board <span class="sr-only">(current)</span></a></li>
-        <li class="members-btn"><a href="#members">Members</a></li>
-      </ul>
+<div id="justLists">
+  <div data-id="c7d8e046-201f-443c-b5f4-7c32e00567ee" class="listFull">
+    <div class="titleInput"><h3>Backlog</h3><input class="hiddenInput">
+      <div class="dropdown">
+        <button class="de-list btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" display="none">
+          <li class="delete-link"><a href="#">Delete List?</a></li>
+        </ul>
+      </div>
     </div>
-  </nav>
-</header>
-
-<main>
-
-</main>
-<!--<script type="text/javascript" src="node_modules/uuid/v4.js"></script>-->
-<script src="script\uuid.js"></script>
-<script type="text/javascript" src="script/script.js"></script>
-
-</body>
-</html>
-
+    <ul class="list-body panel-body"></ul>
+    <div class="panel-footer">
+      <button class="add-card">Add a card...</button>
+    </div>
+  </div>
+  <div data-id="2b188aea-ebad-42d8-bb5a-29aedb45789f" class="listFull">
+    <div class="titleInput"><h3>Todo</h3><input class="hiddenInput">
+      <div class="dropdown">
+        <button class="de-list btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" display="none">
+          <li class="delete-link"><a href="#">Delete List?</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="list-body panel-body"></ul>
+    <div class="panel-footer">
+      <button class="add-card">Add a card...</button>
+    </div>
+  </div>
+  <div data-id="f9b1202a-aa77-49e7-adb3-ecb89e6ac771" class="listFull">
+    <div class="titleInput"><h3>In Progress</h3><input class="hiddenInput">
+      <div class="dropdown">
+        <button class="de-list btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" display="none">
+          <li class="delete-link"><a href="#">Delete List?</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="list-body panel-body"></ul>
+    <div class="panel-footer">
+      <button class="add-card">Add a card...</button>
+    </div>
+  </div>
+  <div data-id="30b9c8d7-0eff-44e7-affa-1712d3638c00" class="listFull">
+    <div class="titleInput"><h3>QA</h3><input class="hiddenInput">
+      <div class="dropdown">
+        <button class="de-list btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" display="none">
+          <li class="delete-link"><a href="#">Delete List?</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="list-body panel-body"></ul>
+    <div class="panel-footer">
+      <button class="add-card">Add a card...</button>
+    </div>
+  </div>
+  <div data-id="f640028a-0812-44ef-af28-53c23c590b23" class="listFull">
+    <div class="titleInput"><h3>Done</h3><input class="hiddenInput">
+      <div class="dropdown">
+        <button class="de-list btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" display="none">
+          <li class="delete-link"><a href="#">Delete List?</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="list-body panel-body"></ul>
+    <div class="panel-footer">
+      <button class="add-card">Add a card...</button>
+    </div>
+  </div>
+</div>

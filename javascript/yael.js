@@ -206,7 +206,7 @@ function getInishials(str) {
 */
 
 function handelListMaking(data) {
-
+  // console.log(data);
   if (data !== undefined) {
     const lists = data;
     const main = document.querySelector('main');
@@ -361,7 +361,7 @@ function membersMaker(membersId, card) {
       const userOnTask = createElement('span', ['user-icon', 'label', 'label-primary'], cardFooter);
       appData.members.forEach((member) => {
         if (member.id === memberId) {
-          let memberName = member.name
+          let memberName = member.name;
           userOnTask.setAttribute('title', `${memberName}`);
           userOnTask.innerHTML = getInishials(memberName);
         }
@@ -945,7 +945,7 @@ function reqListenerData(event) {
 }
 function reqListenerMember(event) {
 
-  const target = event.target
+  const target = event.target;
   let DataMembers = JSON.parse(target.responseText);
 
   appData.members = DataMembers.members;

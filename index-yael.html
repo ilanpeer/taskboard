@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="styles/yael.css">
   <title>Taskboard</title>
 </head>
 <body>
@@ -67,13 +68,15 @@
           <button type='action' class="btn-group-left capitalize delete-card btn btn-primary" onclick="deleteCard()">delete card</button>
           <div class="btn-group-right">
             <button type="button" onclick="toggleModal()" class="close-modal btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="save-changes btn btn-primary" onclick="saveCardChanges()">Save changes</button>
+            <button type="button" class="save-changes btn btn-primary" onclick="saveCardHandler()">Save changes</button>
           </div>
         </div>
       </div>
     </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
 <main>
 
 </main>
@@ -81,8 +84,8 @@
 <footer>
 
 </footer>
-<script src="js/uuid.js"></script>
-<script src="js/main.js"></script>
+<script src="javascript/uuid.js"></script>
+<script src="javascript/yael.js"></script>
 
 </body>
 </html>

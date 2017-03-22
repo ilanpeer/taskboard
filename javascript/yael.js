@@ -555,8 +555,8 @@ function getModalContent(target, cardModal) {
     const optionId = option.getAttribute('data-id');
     if (optionId === selectedListId) {
       option.selected = true;
-      console.info(optionId);
-      console.info(selectedListId);
+      // console.info(optionId);
+      // console.info(selectedListId);
 
       //add card description
       let card = list.tasks.find((task) => {

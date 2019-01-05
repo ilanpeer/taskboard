@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/CreateBootcamp/taskboard#readme",
   "dependencies": {
-    "bootstrap": "3.3.7"
+    "bootstrap": ">=3.4.0"
   }
 }
